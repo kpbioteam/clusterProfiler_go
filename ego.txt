@@ -1,0 +1,5 @@
+"ID" "Description" "GeneRatio" "BgRatio" "pvalue" "p.adjust" "qvalue" "geneID" "Count"
+"GO:0004602" "GO:0004602" "glutathione peroxidase activity" "1/1" "20/17354" 0.00115247205255264 0.00353424762782832 NA "GPX3" 1
+"GO:0004601" "GO:0004601" "peroxidase activity" "1/1" "43/17354" 0.00247781491298826 0.00353424762782832 NA "GPX3" 1
+"GO:0016684" "GO:0016684" "oxidoreductase activity, acting on peroxide as acceptor" "1/1" "46/17354" 0.00265068572087124 0.00353424762782832 NA "GPX3" 1
+"GO:0016209" "GO:0016209" "antioxidant activity" "1/1" "81/17354" 0.00466751181283831 0.00466751181283831 NA "GPX3" 1

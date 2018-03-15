@@ -1,0 +1,36 @@
+<tool id="clusterProfiler_go" name="clusterProfiler_go" version="0.1.0">
+    <description>run GO Analysis</description>
+    <requirements>
+        <requirement type="package" version="3.6.0">bioconductor-clusterprofiler</requirement>
+        <requirement type="package" version="3.5.0">bioconductor-org.hs.eg.db</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript  ${__tool_directory__}/clusterProfiler_go.R "$input1" "$input2" "$output1"
+    ]]></command>
+    <inputs>
+        <param type="data" name="input1" format="txt" />
+        param  name="input2" type="select" label="Gene ID type" help="User should provides geneID input type">
+                        <option value="SYMBOL">SYMBOL</option>
+                                          <option value="ENTREZID">ENTREZID</option>
+                                          <option value="kegg">KEGG</option>
+                                          <option value="ENSEMBL">ENSEMBL</option>
+                                          <option value="UNIPROT">UNIPROT</option>
+                                          <option value="ncbi-geneid">NCBI</option> </param>
+    </inputs>
+    <outputs>
+        <data name="output1" format="txt" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="input1" value="gene.txt"/>
+            <param name="input2" value="SYMBOL"/>
+            <output name="output1" file="ego.txt"/>
+        </test>
+    </tests>
+    <help><![CDATA[
+        This tool provide GO Enrichment Analysis of a gene set. Given a set of genes, this will return the enrichment GO categories after FDR control.
+    ]]></help>
+    <citations>
+        <citation type="doi">10.1089/omi.2011.0118</citation>
+    </citations>
+</tool>
