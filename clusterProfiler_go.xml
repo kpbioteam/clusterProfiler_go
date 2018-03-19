@@ -2,62 +2,24 @@
     <description>run GO Analysis</description>
     <requirements>
         <requirement type="package" version="3.6.0">bioconductor-clusterprofiler</requirement>
+        <requirement type="package">r-ggplot2</requirement>
         <requirement type="package" version="3.5.0">bioconductor-org.hs.eg.db</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        Rscript  ${__tool_directory__}/clusterProfiler_go.R "$input1" "$input2" "$output1"
+        Rscript  ${__tool_directory__}/clusterProfiler_go.R "$input1" "$output1" "$output2"
     ]]></command>
     <inputs>
         <param type="data" name="input1" format="txt" />
-        <param name="input2" type="select" label="Input Type Gene ID" help="User should provides input geneID">
-                        <option value="SYMBOL">SYMBOL</option>
-			 <option value="ENTREZID">ENTREZID</option>
-			 <option value="ENSEMBL">ENSEMBL</option>
-			 <option value="ENSEMBLPROT">ENSEMBLPROT</option>
-			<option value="EVIDENCE">EVIDENCE</option>
-			<option value="GOALL">GOALL</option>
-			
-			<option value="ONTOLOGY">ONTOLOGY</option>
-			<option value="PMID">PMID</option>
-			
-			<option value="PFAM">PFAM</option>
-			
-			<option value="OMIM">OMIM</option>
-			
-			<option value="GO">GO</option>
-
-			<option value="UNIPROT">UNIPROT</option>
-			<option value="REFSEQ">REFSEQ</option>
-			<option value="PATH">PATH</option>
-			
-			<option value="MAP">MAP</option>
-			
-			<option value="GENENAME">GENENAME</option>
-			<option value="ENZYME">ENZYME</option>
-			<option value="ALIAS">ALIAS</option>
-
-			<option value="UNIGENE">UNIGENE</option>
-			<option value="PROSITE">PROSITE</option>
-			<option value="ONTOLOGYALL">ONTOLOGYALL</option>
-			<option value="IPI">IPI</option>
-		
-			<option value="EVIDENCEALL">EVIDENCEALL</option>
-			<option value="ENSEMBLTRANS">ENSEMBLTRANS</option>
-			<option value="ACCNUM">ACCNUM</option>
- </param>
-
-
     </inputs>
     <outputs>
         <data name="output1" format="txt" />
-        <data name="output2" format="png" />
+        <data name="output2" format="pdf" />
     </outputs>
     <tests>
         <test>
-            <param name="input1" value="gene.txt"/>
-            <param name="input2" value="SYMBOL"/>
+            <param name="input1" value="genedf.txt"/>
             <output name="output1" file="ego.txt"/>
-            <output name="output2" file="ego.png"/>
+            <output name="output2" file="ego.pdf"/>
         </test>
     </tests>
     <help><![CDATA[
