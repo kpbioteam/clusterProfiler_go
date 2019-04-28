@@ -1,7 +1,7 @@
 <tool id="clusterprofiler_go" name="Cluster Profiler GO" version="0.1.0">
     <description>run GO Analysis</description>
     <requirements>
-        <requirement type="package" version="3.6.0">bioconductor-clusterprofiler</requirement>
+        <requirement type="package" version="3.10.1">bioconductor-clusterprofiler</requirement>
         <requirement type="package">r-ggplot2</requirement>
         <requirement type="package" version="3.5.0">bioconductor-org.hs.eg.db</requirement>
     </requirements>
