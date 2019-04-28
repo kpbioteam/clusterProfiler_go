@@ -1,25 +1,50 @@
-<tool id="clusterProfiler_go" name="clusterProfiler_go" version="0.1.0">
+<tool id="clusterprofiler_go" name="Cluster Profiler GO" version="0.1.0">
     <description>run GO Analysis</description>
     <requirements>
         <requirement type="package" version="3.6.0">bioconductor-clusterprofiler</requirement>
         <requirement type="package">r-ggplot2</requirement>
         <requirement type="package" version="3.5.0">bioconductor-org.hs.eg.db</requirement>
     </requirements>
-    <command detect_errors="exit_code"><![CDATA[
-        Rscript  ${__tool_directory__}/clusterProfiler_go.R "$input1" "$output1" "$output2"
+<command detect_errors="exit_code"><![CDATA[
+        Rscript '$clusterprofiler_go_script'
     ]]></command>
+    <configfiles>
+        <configfile name="clusterprofiler_go_script"><![CDATA[
+
+require("clusterProfiler", quietly = TRUE)
+require("org.Hs.eg.db", quietly = TRUE)
+require("ggplot2", quietly = TRUE)
+
+gene <- read.table('$entrezid')
+ego <- enrichGO(gene          = c(gene\$V2),
+                keyType = "ENTREZID",
+                OrgDb         = org.Hs.eg.db,
+                ont           = "BP",
+                pAdjustMethod = "BH",
+                pvalueCutoff  = 0.01,
+                qvalueCutoff  = 0.05,
+                readable      = TRUE)                
+
+write.table(ego, '$table')
+dotplot(ego)
+ggsave(file = '$plot', device = "pdf")
+
+        ]]>
+        </configfile>
+    </configfiles> 
+        
     <inputs>
-        <param type="data" name="input1" format="txt" />
+        <param type="data" name="entrezid" format="txt" />
     </inputs>
     <outputs>
-        <data name="output1" format="txt" />
-        <data name="output2" format="pdf" />
+        <data name="table" format="txt" />
+        <data name="plot" format="pdf" />
     </outputs>
     <tests>
         <test>
-            <param name="input1" value="genedf.txt"/>
-            <output name="output1" file="ego.txt"/>
-            <output name="output2" file="ego.pdf"/>
+            <param name="entrezid" value="genedf.txt"/>
+            <output name="table" file="ego.txt"/>
+            <output name="plot" file="ego.pdf"/>
         </test>
     </tests>
     <help><![CDATA[
