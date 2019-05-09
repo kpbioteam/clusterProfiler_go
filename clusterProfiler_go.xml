@@ -37,8 +37,8 @@ ggsave(file = '$plot', device = "pdf")
         <param type="data" name="entrezid" format="txt" />
     </inputs>
     <outputs>
-        <data name="table" format="txt" />
-        <data name="plot" format="pdf" />
+        <data name="table" format="txt" label="GO Enrichment Analysis of a Gene Set" />
+        <data name="plot" format="pdf" label="GO Enrichment Analysis Visualization"/>
     </outputs>
     <tests>
         <test>
